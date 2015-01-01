@@ -1,23 +1,23 @@
-DROP TABLE IF EXISTS item, invoice, company;
+DROP TABLE IF EXISTS items, invoices, companies;
 
-CREATE TABLE company (
+CREATE TABLE companies (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   created TIMESTAMP,
   modified TIMESTAMP,
   name VARCHAR(255)
 );
 
-CREATE TABLE invoice (
+CREATE TABLE invoices (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   created TIMESTAMP,
   modified TIMESTAMP,
   submited DATETIME,
   paid DATETIME,
   company INT,
-  FOREIGN KEY (company) REFERENCES company(id)
+  FOREIGN KEY (company) REFERENCES companies(id)
 );
 
-CREATE TABLE item (
+CREATE TABLE items(
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   created TIMESTAMP,
   modified TIMESTAMP,
@@ -27,6 +27,6 @@ CREATE TABLE item (
   description VARCHAR(255),
   company INT,
   invoice INT,
-  FOREIGN KEY (company) REFERENCES company(id),
-  FOREIGN KEY (invoice) REFERENCES invoice(id)
+  FOREIGN KEY (company) REFERENCES companies(id),
+  FOREIGN KEY (invoice) REFERENCES invoices(id)
 );
