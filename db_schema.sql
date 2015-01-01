@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS item, invoice, company;
 
 CREATE TABLE company (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  craeted TIMESTAMP,
+  created TIMESTAMP,
   modified TIMESTAMP,
   name VARCHAR(255)
 );
