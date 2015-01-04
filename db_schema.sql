@@ -11,7 +11,7 @@ CREATE TABLE invoices (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   created TIMESTAMP,
   modified TIMESTAMP,
-  submited DATETIME,
+  submitted DATETIME,
   paid DATETIME,
   company INT,
   FOREIGN KEY (company) REFERENCES companies(id)
