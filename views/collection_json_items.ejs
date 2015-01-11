@@ -1,0 +1,13 @@
+"items" : [
+      <%for(i=0,x=items.length;i<x;i++) {%>
+      {
+        "href" : "<%=site%>/<%=items[i].id%>",
+        "data" : [
+          {"name" : "description", "value" : "<%=items[i].description%>", "prompt" : "Description"},
+          {"name" : "rate", "value" : "<%=items[i].rate%>", "prompt" : "Rate"}    
+   
+        ]
+      }
+      <% if(i<items.length-1){%>,<% } %>
+      <% } %>
+    ]

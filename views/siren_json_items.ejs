@@ -1,0 +1,39 @@
+{
+	"class": ["items"],
+	"entities": [
+		<%for(i=0,x=items.length;i<x;i++) {%>
+		{
+		    "class": ["item"],
+		    "rel": ["element"],
+		    "href" : "<%=site%>/<%=items[i].id%>",
+		    "properties": {
+				"created": "<%= items[i].created %>",
+				"modified": "<%= items[i].modified %>",
+				"start-time": "<%= items[i].start %>",
+				"end-time": "<%= items[i].end %>",
+				"rate": <%= items[i].rate %>,
+				"description": "<%= items[i].description %>"
+			}
+		}<% if(i<items.length-1){%>,<% } %>
+  <% } %>
+	],
+	"actions": [
+		{
+			"name": "add-item",
+			"title": "Add Item",
+			"method": "POST",
+			"href": "<%= site %>",
+			"type": "application/x-www-form-urlencoded",
+			"fields": [
+				{"name": "modified", "type": "datetime"},
+				{"name": "start", "type": "datetime"},
+				{"name": "end", "type": "datetime"},
+				{"name": "rate", "type": "number"},
+				{"name": "description", "type": "text"}
+			]
+		}
+	],
+	"links": [
+		{"rel": ["self"], "href": "<%= site %>"}
+	]
+}

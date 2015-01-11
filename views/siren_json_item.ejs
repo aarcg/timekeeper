@@ -1,0 +1,32 @@
+
+{
+	"class": ["item"],
+	"href" : "<%= site %>",
+	"properties": {
+		"created": "<%= items[0].created %>",
+		"modified": "<%= items[0].modified %>",
+		"start-time": "<%= items[0].start %>",
+		"end-time": "<%= items[0].end %>",
+		"rate": <%= items[0].rate %>,
+		"description": "<%= items[0].description %>"
+	},
+	"actions": [
+		{
+			"name": "update-item",
+			"title": "Update Item",
+			"method": "PUT",
+			"href": "<%= site %>",
+			"type": "application/x-www-form-urlencoded",
+			"fields": [
+				{"name": "modified", "type": "datetime", "value": "<%= items[0].modified %>"},
+				{"name": "start", "type": "datetime"},
+				{"name": "end", "type": "datetime"},
+				{"name": "rate", "type": "number"},
+				{"name": "description", "type": "text"}
+			]
+		}
+	],
+	"links": [
+		{"rel": ["self"], "href": "<%= site %>"}
+	]
+}
