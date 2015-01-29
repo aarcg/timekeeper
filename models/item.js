@@ -1,6 +1,35 @@
-var mysql = require('mysql');
 var db = require('../modules/mysql_models');
-var pool = db.getPool();
+var myModel = db.model({
+	primaryKey: 'id',
+	table: 'items',
+	schema: {
+		id: 'number',
+		created: 'datetime',
+		modified: 'datetime',
+		start: 'datetime',
+		end: 'datetime',
+		rate: 'number',
+		description: 'text',
+		customer: 'number',
+		invoice: 'number'
+	}
+});
+var myModel2 = db.model({
+	primaryKey: 'id',
+	table: 'invoices',
+	schema: {
+		id: 'number',
+		created: 'datetime',
+		modified: 'datetime',
+		start: 'datetime',
+		end: 'datetime',
+		rate: 'number',
+		description: 'text',
+		customer: 'number',
+		invoice: 'number'
+	}
+});
+var pool = db.getConnection();
 var primaryKey = 'id';
 var table = 'items';
 var schema = {
@@ -52,7 +81,7 @@ module.exports = {
 	update: function update(values, identifiers, callback) {
 		var whitelistedValues = checkValues(values, schema);
 		var result;
-		var sql = 'UPDATE ' + table + ' SET ? WHERE id=' + mysql.escape(identifiers.id) + ' AND modified=' + mysql.escape(identifiers.modified);
+		var sql = 'UPDATE ' + table + ' SET ? WHERE id=' + db.mysql.escape(identifiers.id) + ' AND modified=' + db.mysql.escape(identifiers.modified);
 
 		var query = pool.query(sql, whitelistedValues, function(err, result) {
 			callback(err, result);
@@ -70,7 +99,7 @@ module.exports = {
 
 	select: function select(id, callback) {
 		var result = [];
-		var sql = 'SELECT * FROM ' + table + ' WHERE id=' + mysql.escape(id);
+		var sql = 'SELECT * FROM ' + table + ' WHERE id=' + db.mysql.escape(id);
 
 		query = pool.query(sql);
 		query
@@ -88,7 +117,7 @@ module.exports = {
 
 	selectCustomerItem: function selectCustomerItem(values, callback) {
 		var result = [];
-		var sql = 'SELECT * FROM ' + table + ' WHERE customer=' + mysql.escape(values.customerId) + ' AND id=' + mysql.escape(values.id);
+		var sql = 'SELECT * FROM ' + table + ' WHERE customer=' + db.mysql.escape(values.customerId) + ' AND id=' + db.mysql.escape(values.id);
 
 		query = pool.query(sql);
 		query
@@ -106,7 +135,7 @@ module.exports = {
 
 	selectCustomerItems: function selectCustomerItems(customer, callback) {
 		var result = [];
-		var sql = 'SELECT * FROM ' + table + ' WHERE customer=' + mysql.escape(customer);
+		var sql = 'SELECT * FROM ' + table + ' WHERE customer=' + db.mysql.escape(customer);
 
 		query = pool.query(sql);
 		query

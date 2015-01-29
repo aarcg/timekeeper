@@ -20,9 +20,13 @@
     "express-partials": "^0.3.0",
     "jade": "~1.6.0",
     "morgan": "~1.3.0",
+    "mysql": "^2.5.4",
+    "sequelize": "^2.0.0-rc7",
     "serve-favicon": "~2.1.3"
   },
   "devDependencies": {
-    "grunt": "^0.4.5"
+    "chai": "^1.10.0",
+    "grunt": "^0.4.5",
+    "mocha": "^2.1.0"
   }
 }

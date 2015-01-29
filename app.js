@@ -5,10 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var config = require('./config.json'); //perhaps load async and handle possible missing file
-var db = require('./modules/mysql_models').createPool(config);
 var routes = require('./routes/index');
-var api = require('./routes/api');
 var partials = require('express-partials');
+var api = {};
 
 var app = express();
 
@@ -17,6 +16,12 @@ var app = express();
 // app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+
+// instantiate models and make them available to the app
+app.set('models', require('./models'));
+
+// build the api routes
+api = require('./routes/api')(app);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
